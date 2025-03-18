@@ -5,10 +5,10 @@ Console.OutputEncoding = UTF8Encoding.UTF8;
 
 Random random = new Random();
 
-char[,] playerBoard = new char[10, 10];
-char[,] computerBoard = new char[10, 10];
-char[,] playerHits = new char[10, 10];
-char[,] computerHits = new char[10, 10];
+char[,] playerBoard = new char[9, 11];
+char[,] computerBoard = new char[9, 11];
+char[,] playerHits = new char[9, 11];
+char[,] computerHits = new char[9, 11];
 
 InitializeBoard(playerBoard);
 InitializeBoard(computerBoard);
@@ -39,7 +39,7 @@ static void InitializeBoard(char[,] board)
 static void DisplayBoard(char[,] board, string title)
 {
     Console.WriteLine(title);
-    Console.WriteLine("  0 1 2 3 4 5 6 7 8 9");
+    Console.WriteLine("  0 1 2 3 4 5 6 7 8 9 X");
     for (int i = 0; i < board.GetLength(0); i++)
     {
         Console.Write(i + " ");
@@ -50,4 +50,3 @@ static void DisplayBoard(char[,] board, string title)
         Console.WriteLine();
     }
 }
-
