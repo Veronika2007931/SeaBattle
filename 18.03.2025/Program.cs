@@ -16,12 +16,14 @@ InitializeBoard(playerHits);
 InitializeBoard(computerHits);
 
 
-Console.WriteLine("# МОРСЬКИЙ БІЙ #");
+Console.WriteLine("Привіт! Як твій настрій? Хочеш зіграти в морський бій?");
 
-void placeShips() {
-    Console.WriteLine("Розсташуйте ваші кораблі: ");
+string title = "Ваша дошка!";
 
-}
+
+Console.WriteLine("Розсташуйте ваші кораблі: ");
+DisplayBoard(playerBoard,title);
+
 
 static void InitializeBoard(char[,] board)
 {
@@ -49,59 +51,3 @@ static void DisplayBoard(char[,] board, string title)
     }
 }
 
-void PlayerTurn()
-{
-    int x, y;
-    while (true)
-    {
-        Console.WriteLine("Введіть координати (рядок і стовпець) для вашого удару (пр. 2 3):");
-        string input = Console.ReadLine();
-        string[] parts = input.Split(' ');
-        if (parts.Length == 2 && int.TryParse(parts[0], out x) && int.TryParse(parts[1], out y) && x >= 0 && x < 10 && y >= 0 && y < 10)
-        {
-            if (computerHits[x, y] != '.')
-            {
-                Console.WriteLine("Ви ж вже сюди влучали! Ще раз...");
-            }
-            else
-            {
-                if (computerBoard[x, y] == 'S')
-                {
-                    Console.WriteLine("Пробито!");
-                    computerHits[x, y] = 'H';
-                }
-                else
-                {
-                    Console.WriteLine("Промах.");
-                    computerHits[x, y] = 'M';
-                }
-                break;
-            }
-        }
-        else
-        {
-            Console.WriteLine("Не дійсні координати. Введіть ще раз: ");
-        }
-    }
-}
-
-void ComputerTurn()
-{
-    int x, y;
-    do
-    {
-        x = random.Next(0, 10);
-        y = random.Next(0, 10);
-    } while (playerHits[x, y] != '.');
-
-    if (playerBoard[x, y] == 'S')
-    {
-        Console.WriteLine($"Бот б'є ваш корабель у {x} {y}!");
-        playerHits[x, y] = 'H';
-    }
-    else
-    {
-        Console.WriteLine($"Бот промахується у {x} {y}.");
-        playerHits[x, y] = 'M';
-    }
-}
